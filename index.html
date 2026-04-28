@@ -468,6 +468,148 @@
   .footer-left { font-size: 12px; color: var(--ink-faint); }
   .footer-right { font-size: 12px; color: var(--ink-faint); }
 
+  /* ── LIVE FEED ── */
+  .live-feed-panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow);
+    margin-top: 16px;
+  }
+
+  .feed-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .feed-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .live-dot {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .live-dot::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .feed-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .feed-tab {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.12s;
+  }
+
+  .feed-tab.active {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+  }
+
+  .feed-tab:hover:not(.active) { background: var(--surface); }
+
+  .feed-list { min-height: 200px; }
+
+  .feed-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .feed-item:last-child { border-bottom: none; }
+  .feed-item:hover .feed-item-title { color: var(--accent); }
+
+  .feed-item-source {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .feed-item-title {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.4;
+    transition: color 0.12s;
+  }
+
+  .feed-item-date {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .feed-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  .feed-error {
+    font-size: 12px;
+    color: var(--ink-faint);
+    padding: 12px 0;
+    text-align: center;
+  }
+
+  /* ── SOURCE LINK ── */
+  .source-name a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.12s, color 0.12s;
+  }
+
+  .source-name a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .main { padding: 1rem; }
@@ -555,7 +697,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e0f2f0;">☕</div>
           <div class="source-info">
-            <div class="source-name">HR Brew</div>
+            <div class="source-name"><a href="https://www.morningbrew.com/hr" target="_blank">HR Brew</a></div>
             <div class="source-desc">Morning Brew's HR vertical — fast, sharp signal</div>
           </div>
           <span class="freq-badge freq-daily">Daily</span>
@@ -563,7 +705,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fff3e0;">🧠</div>
           <div class="source-info">
-            <div class="source-name">The Neuron</div>
+            <div class="source-name"><a href="https://www.theneurondaily.com" target="_blank">The Neuron</a></div>
             <div class="source-desc">Agentic AI news with enterprise focus</div>
           </div>
           <span class="freq-badge freq-daily">Daily</span>
@@ -571,7 +713,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e8f0fb;">⚡</div>
           <div class="source-info">
-            <div class="source-name">TLDR AI</div>
+            <div class="source-name"><a href="https://tldr.tech/ai" target="_blank">TLDR AI</a></div>
             <div class="source-desc">Fast AI digest — model releases, agent launches</div>
           </div>
           <span class="freq-badge freq-daily">Daily</span>
@@ -579,7 +721,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fdecea;">🍞</div>
           <div class="source-info">
-            <div class="source-name">Ben's Bites</div>
+            <div class="source-name"><a href="https://bensbites.com" target="_blank">Ben's Bites</a></div>
             <div class="source-desc">Agentic AI use cases + enterprise applications</div>
           </div>
           <span class="freq-badge freq-daily">Daily</span>
@@ -595,7 +737,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fdecea;">🔬</div>
           <div class="source-info">
-            <div class="source-name">Josh Bersin Company</div>
+            <div class="source-name"><a href="https://joshbersin.com" target="_blank">Josh Bersin Company</a></div>
             <div class="source-desc">Research briefs, Galileo AI, HR strategy</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -603,7 +745,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e8f5e9;">📊</div>
           <div class="source-info">
-            <div class="source-name">Aptitude Research</div>
+            <div class="source-name"><a href="https://aptituderesearch.com" target="_blank">Aptitude Research</a></div>
             <div class="source-desc">Boutique HR tech analyst — platform deep dives</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -611,7 +753,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e8f0fb;">🏢</div>
           <div class="source-info">
-            <div class="source-name">Gartner HR</div>
+            <div class="source-name"><a href="https://www.gartner.com/en/human-resources" target="_blank">Gartner HR</a></div>
             <div class="source-desc">Platform hype cycles and adoption curves</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -619,7 +761,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e0f2f0;">📈</div>
           <div class="source-info">
-            <div class="source-name">SHRM HR Daily</div>
+            <div class="source-name"><a href="https://www.shrm.org/topics-tools/news" target="_blank">SHRM HR Daily</a></div>
             <div class="source-desc">Broad HR coverage with technology lens</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -635,7 +777,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e8f0fb;">🎙️</div>
           <div class="source-info">
-            <div class="source-name">Josh Bersin Company Podcast</div>
+            <div class="source-name"><a href="https://joshbersin.com/podcast/" target="_blank">Josh Bersin Company Podcast</a></div>
             <div class="source-desc">HR AI and workforce strategy deep dives</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -643,7 +785,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e0f2f0;">🎧</div>
           <div class="source-info">
-            <div class="source-name">HR Leaders Podcast</div>
+            <div class="source-name"><a href="https://hrleaders.co/podcast" target="_blank">HR Leaders Podcast</a></div>
             <div class="source-desc">Practitioner interviews, grounded insights</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -651,7 +793,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fff3e0;">🤖</div>
           <div class="source-info">
-            <div class="source-name">AI in Business (Emerj)</div>
+            <div class="source-name"><a href="https://emerj.com/ai-podcast-transcripts/" target="_blank">AI in Business (Emerj)</a></div>
             <div class="source-desc">Agentic AI context beyond HR</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -659,7 +801,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fdecea;">🔄</div>
           <div class="source-info">
-            <div class="source-name">Future of Work Exchange</div>
+            <div class="source-name"><a href="https://www.ardentpartners.com/future-of-work-exchange-podcast/" target="_blank">Future of Work Exchange</a></div>
             <div class="source-desc">Workforce tech and AI automation</div>
           </div>
           <span class="freq-badge freq-weekly">Weekly</span>
@@ -671,7 +813,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e8f0fb;">☁️</div>
           <div class="source-info">
-            <div class="source-name">Workday Blog</div>
+            <div class="source-name"><a href="https://blog.workday.com" target="_blank">Workday Blog</a></div>
             <div class="source-desc">AI agent roadmap and product releases</div>
           </div>
           <span class="freq-badge freq-monthly">Monthly</span>
@@ -679,7 +821,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#e8f5e9;">⚙️</div>
           <div class="source-info">
-            <div class="source-name">ServiceNow Now Blog</div>
+            <div class="source-name"><a href="https://www.servicenow.com/blogs.html" target="_blank">ServiceNow Now Blog</a></div>
             <div class="source-desc">Agentic workflows and enterprise AI</div>
           </div>
           <span class="freq-badge freq-monthly">Monthly</span>
@@ -687,7 +829,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fff3e0;">🌐</div>
           <div class="source-info">
-            <div class="source-name">SAP SuccessFactors Blog</div>
+            <div class="source-name"><a href="https://www.sap.com/blogs/topics/sap-successfactors" target="_blank">SAP SuccessFactors Blog</a></div>
             <div class="source-desc">HCM platform innovations and AI features</div>
           </div>
           <span class="freq-badge freq-monthly">Monthly</span>
@@ -695,7 +837,7 @@
         <div class="source-row">
           <div class="source-icon" style="background:#fdecea;">🧩</div>
           <div class="source-info">
-            <div class="source-name">HiBob Product Updates</div>
+            <div class="source-name"><a href="https://www.hibob.com/blog/" target="_blank">HiBob Product Updates</a></div>
             <div class="source-desc">SMB HR platform and AI feature releases</div>
           </div>
           <span class="freq-badge freq-monthly">Monthly</span>
@@ -709,7 +851,28 @@
     </div>
   </div>
 
-  <!-- TAB: RHYTHM -->
+  <!-- LIVE RSS FEED PANEL -->
+  <div class="live-feed-panel" id="rss-panel">
+    <div class="feed-header">
+      <span class="feed-title">Live Headlines</span>
+      <span class="live-dot">Live</span>
+    </div>
+    <div class="feed-tabs">
+      <button class="feed-tab active" onclick="loadFeed('bersin', this)">Josh Bersin</button>
+      <button class="feed-tab" onclick="loadFeed('shrm', this)">SHRM</button>
+      <button class="feed-tab" onclick="loadFeed('workday', this)">Workday</button>
+      <button class="feed-tab" onclick="loadFeed('servicenow', this)">ServiceNow</button>
+      <button class="feed-tab" onclick="loadFeed('emerj', this)">Emerj AI</button>
+    </div>
+    <div class="feed-list" id="feed-list">
+      <div class="feed-loading">Loading latest headlines…</div>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:var(--ink-faint);">
+      Updates every time you open the dashboard · Click any headline to read the full article
+    </div>
+  </div>
+
+
   <div id="rhythm" class="section">
     <div class="grid-2">
       <div class="card">
@@ -1119,7 +1282,56 @@
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
+    const rssPanel = document.getElementById('rss-panel');
+    if (rssPanel) rssPanel.style.display = id === 'feeds' ? 'block' : 'none';
   }
+
+  const RSS_FEEDS = {
+    bersin:      { url: 'https://joshbersin.com/feed/', label: 'Josh Bersin' },
+    shrm:        { url: 'https://www.shrm.org/rss/pages/rss.aspx', label: 'SHRM' },
+    workday:     { url: 'https://blog.workday.com/en-us/feeds/posts/default.rss', label: 'Workday Blog' },
+    servicenow:  { url: 'https://www.servicenow.com/blogs.rss', label: 'ServiceNow' },
+    emerj:       { url: 'https://emerj.com/feed/', label: 'Emerj AI' }
+  };
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    try {
+      return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch(e) { return ''; }
+  }
+
+  async function loadFeed(key, btn) {
+    document.querySelectorAll('.feed-tab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    else document.querySelector(`.feed-tab[onclick*="${key}"]`)?.classList.add('active');
+
+    const list = document.getElementById('feed-list');
+    list.innerHTML = '<div class="feed-loading">Loading headlines…</div>';
+
+    const feed = RSS_FEEDS[key];
+    const proxy = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}&count=8`;
+
+    try {
+      const res = await fetch(proxy);
+      const data = await res.json();
+      if (data.status !== 'ok' || !data.items?.length) throw new Error('empty');
+
+      list.innerHTML = data.items.map(item => `
+        <a class="feed-item" href="${item.link}" target="_blank" rel="noopener noreferrer">
+          <span class="feed-item-source">${feed.label}</span>
+          <span class="feed-item-title">${item.title}</span>
+          <span class="feed-item-date">${formatDate(item.pubDate)}</span>
+        </a>
+      `).join('');
+    } catch(e) {
+      const siteUrl = feed.url.replace('/feed/','').replace('/feed','').replace('.rss','');
+      list.innerHTML = `<div class="feed-error">Live feed unavailable — <a href="${siteUrl}" target="_blank" style="color:var(--accent);">visit ${feed.label} directly →</a></div>`;
+    }
+  }
+
+  // Auto-load Bersin on page open
+  window.addEventListener('DOMContentLoaded', () => loadFeed('bersin', null));
 </script>
 
 </body>
