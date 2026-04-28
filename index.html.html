@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Tech Intelligence Hub — Alex Rivera</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1117;
+    --ink-mid: #3a3d4a;
+    --ink-soft: #717585;
+    --ink-faint: #a8aab8;
+    --surface: #f7f7f9;
+    --surface-alt: #eeeef3;
+    --white: #ffffff;
+    --accent: #0066cc;
+    --accent-light: #e8f0fb;
+    --accent-mid: #4d94e0;
+    --teal: #00897b;
+    --teal-light: #e0f2f0;
+    --amber: #c97a00;
+    --amber-light: #fff3e0;
+    --coral: #c94f35;
+    --coral-light: #fdecea;
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --border: rgba(15,17,23,0.1);
+    --border-strong: rgba(15,17,23,0.18);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 2px 12px rgba(15,17,23,0.07), 0 1px 3px rgba(15,17,23,0.05);
+    --shadow-md: 0 4px 24px rgba(15,17,23,0.1), 0 2px 6px rgba(15,17,23,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    gap: 1.5rem;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .marvell-slot {
+    width: 110px;
+    height: 44px;
+    border: 1.5px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .marvell-slot span {
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .divider-v {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .header-title h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .header-title .subtitle {
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .badge-agent {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(0,102,204,0.15);
+  }
+
+  .last-updated {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 5px;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 7px 18px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover { background: var(--surface); color: var(--ink); }
+
+  .tab-btn.active {
+    background: var(--ink);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── SECTIONS ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── SOURCE ROWS ── */
+  .source-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .source-row:last-child { border-bottom: none; }
+
+  .source-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .source-info { flex: 1; min-width: 0; }
+  .source-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .source-desc { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+
+  .freq-badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .freq-daily { background: var(--teal-light); color: var(--teal); }
+  .freq-weekly { background: var(--accent-light); color: var(--accent); }
+  .freq-monthly { background: var(--amber-light); color: var(--amber); }
+
+  /* ── LEADER PILLS ── */
+  .pill-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.75rem; }
+
+  .pill {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .pill:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+  /* ── RHYTHM ── */
+  .rhythm-row {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .rhythm-row:last-child { border-bottom: none; }
+
+  .rhythm-when {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 80px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .rhythm-body { flex: 1; }
+  .rhythm-what { font-size: 13px; color: var(--ink); line-height: 1.5; }
+  .rhythm-src { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
+
+  /* ── TOPIC BARS ── */
+  .topic-row { margin-bottom: 18px; }
+
+  .topic-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .topic-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+
+  .topic-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .tag-core { background: var(--accent-light); color: var(--accent); }
+  .tag-platform { background: var(--teal-light); color: var(--teal); }
+  .tag-macro { background: var(--amber-light); color: var(--amber); }
+  .tag-research { background: var(--green-light); color: var(--green); }
+
+  .bar-track {
+    height: 5px;
+    background: var(--surface-alt);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  .topic-src { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+
+  /* ── QUICK BRIEF LINKS ── */
+  .brief-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .brief-link:last-child { border-bottom: none; }
+  .brief-link:hover .brief-text { color: var(--accent); }
+
+  .brief-text {
+    font-size: 13px;
+    color: var(--ink);
+    flex: 1;
+    line-height: 1.4;
+    transition: color 0.12s;
+  }
+
+  .brief-arrow { font-size: 13px; color: var(--ink-faint); }
+
+  /* ── EVENTS ── */
+  .event-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-row:last-child { border-bottom: none; }
+
+  .event-month {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .event-info { flex: 1; }
+  .event-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .event-detail { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+  .event-btn {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.12s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .event-btn:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+  /* ── ALERT BANNER ── */
+  .alert {
+    background: var(--accent-light);
+    border: 1px solid rgba(0,102,204,0.2);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--white);
+    padding: 1.25rem 2rem;
+    margin-top: 3rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-left { font-size: 12px; color: var(--ink-faint); }
+  .footer-right { font-size: 12px; color: var(--ink-faint); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .main { padding: 1rem; }
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .header-meta { width: 100%; justify-content: space-between; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .tab-btn { font-size: 12px; padding: 6px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="marvell-slot">
+        <span>Marvell Logo</span>
+      </div>
+      <div class="divider-v"></div>
+      <div class="header-title">
+        <h1>Alex Rivera &mdash; Agent for Change</h1>
+        <div class="subtitle">HR Tech Intelligence Hub</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="badge-agent">Agentic AI Focus</span>
+      <span class="last-updated">Updated April 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="alert">
+    <span>📡</span>
+    <span>Curated intelligence on Agentic AI, HR Platforms & Future of Work — built for HR leaders navigating the 2026 transformation.</span>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-card">
+      <div class="stat-label">Sources Tracked</div>
+      <div class="stat-val">18</div>
+      <div class="stat-sub">Newsletters, podcasts & analysts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Topics Covered</div>
+      <div class="stat-val">5</div>
+      <div class="stat-sub">Agentic AI, platforms, FoW & more</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Daily Time</div>
+      <div class="stat-val">~15<span style="font-size:1rem;">m</span></div>
+      <div class="stat-sub">To stay ahead of the field</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Next Conference</div>
+      <div class="stat-val">Jun 8</div>
+      <div class="stat-sub">Irresistible 2026 — USC Marshall</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">HR Roles at Risk</div>
+      <div class="stat-val">30<span style="font-size:1rem;">%</span></div>
+      <div class="stat-sub">Bersin research — agentic automation</div>
+    </div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('feeds', this)">Feeds &amp; Sources</button>
+    <button class="tab-btn" onclick="showTab('rhythm', this)">Weekly Rhythm</button>
+    <button class="tab-btn" onclick="showTab('topics', this)">Topic Radar</button>
+    <button class="tab-btn" onclick="showTab('events', this)">Events</button>
+    <button class="tab-btn" onclick="showTab('leaders', this)">Thought Leaders</button>
+  </div>
+
+  <!-- TAB: FEEDS -->
+  <div id="feeds" class="section active">
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-title">Daily reads — 5 to 10 min</div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e0f2f0;">☕</div>
+          <div class="source-info">
+            <div class="source-name">HR Brew</div>
+            <div class="source-desc">Morning Brew's HR vertical — fast, sharp signal</div>
+          </div>
+          <span class="freq-badge freq-daily">Daily</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fff3e0;">🧠</div>
+          <div class="source-info">
+            <div class="source-name">The Neuron</div>
+            <div class="source-desc">Agentic AI news with enterprise focus</div>
+          </div>
+          <span class="freq-badge freq-daily">Daily</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f0fb;">⚡</div>
+          <div class="source-info">
+            <div class="source-name">TLDR AI</div>
+            <div class="source-desc">Fast AI digest — model releases, agent launches</div>
+          </div>
+          <span class="freq-badge freq-daily">Daily</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fdecea;">🍞</div>
+          <div class="source-info">
+            <div class="source-name">Ben's Bites</div>
+            <div class="source-desc">Agentic AI use cases + enterprise applications</div>
+          </div>
+          <span class="freq-badge freq-daily">Daily</span>
+        </div>
+        <div style="margin-top:1rem;">
+          <a href="https://www.morningbrew.com/hr" target="_blank" class="pill">Subscribe to HR Brew →</a>
+          <a href="https://www.theneurondaily.com" target="_blank" class="pill" style="margin-top:6px;">Subscribe to The Neuron →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Deep research — 30 min per week</div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fdecea;">🔬</div>
+          <div class="source-info">
+            <div class="source-name">Josh Bersin Company</div>
+            <div class="source-desc">Research briefs, Galileo AI, HR strategy</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f5e9;">📊</div>
+          <div class="source-info">
+            <div class="source-name">Aptitude Research</div>
+            <div class="source-desc">Boutique HR tech analyst — platform deep dives</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f0fb;">🏢</div>
+          <div class="source-info">
+            <div class="source-name">Gartner HR</div>
+            <div class="source-desc">Platform hype cycles and adoption curves</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e0f2f0;">📈</div>
+          <div class="source-info">
+            <div class="source-name">SHRM HR Daily</div>
+            <div class="source-desc">Broad HR coverage with technology lens</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div style="margin-top:1rem;">
+          <a href="https://joshbersin.com" target="_blank" class="pill">Visit Bersin →</a>
+          <a href="https://aptituderesearch.com" target="_blank" class="pill" style="margin-top:6px;">Visit Aptitude →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Podcasts — commute friendly</div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f0fb;">🎙️</div>
+          <div class="source-info">
+            <div class="source-name">Josh Bersin Company Podcast</div>
+            <div class="source-desc">HR AI and workforce strategy deep dives</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e0f2f0;">🎧</div>
+          <div class="source-info">
+            <div class="source-name">HR Leaders Podcast</div>
+            <div class="source-desc">Practitioner interviews, grounded insights</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fff3e0;">🤖</div>
+          <div class="source-info">
+            <div class="source-name">AI in Business (Emerj)</div>
+            <div class="source-desc">Agentic AI context beyond HR</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fdecea;">🔄</div>
+          <div class="source-info">
+            <div class="source-name">Future of Work Exchange</div>
+            <div class="source-desc">Workforce tech and AI automation</div>
+          </div>
+          <span class="freq-badge freq-weekly">Weekly</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Platform release blogs — monthly</div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f0fb;">☁️</div>
+          <div class="source-info">
+            <div class="source-name">Workday Blog</div>
+            <div class="source-desc">AI agent roadmap and product releases</div>
+          </div>
+          <span class="freq-badge freq-monthly">Monthly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f5e9;">⚙️</div>
+          <div class="source-info">
+            <div class="source-name">ServiceNow Now Blog</div>
+            <div class="source-desc">Agentic workflows and enterprise AI</div>
+          </div>
+          <span class="freq-badge freq-monthly">Monthly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fff3e0;">🌐</div>
+          <div class="source-info">
+            <div class="source-name">SAP SuccessFactors Blog</div>
+            <div class="source-desc">HCM platform innovations and AI features</div>
+          </div>
+          <span class="freq-badge freq-monthly">Monthly</span>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fdecea;">🧩</div>
+          <div class="source-info">
+            <div class="source-name">HiBob Product Updates</div>
+            <div class="source-desc">SMB HR platform and AI feature releases</div>
+          </div>
+          <span class="freq-badge freq-monthly">Monthly</span>
+        </div>
+        <div style="margin-top:1rem;">
+          <a href="https://blog.workday.com" target="_blank" class="pill">Workday Blog →</a>
+          <a href="https://www.servicenow.com/blogs.html" target="_blank" class="pill" style="margin-top:6px;">ServiceNow Blog →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB: RHYTHM -->
+  <div id="rhythm" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Daily — 5 to 10 minutes</div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Morning</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Scan HR Brew and one AI newsletter (Neuron or TLDR AI)</div>
+            <div class="rhythm-src">HR Brew · The Neuron · TLDR AI</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Anytime</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Check Ben's Bites for agentic AI product launches and enterprise use cases</div>
+            <div class="rhythm-src">Ben's Bites</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Weekly — 30 to 45 minutes</div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Mon–Tue</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Read one Josh Bersin post or Aptitude Research brief</div>
+            <div class="rhythm-src">joshbersin.com · aptituderesearch.com</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Commute</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">One podcast episode — rotate across the four</div>
+            <div class="rhythm-src">HR Leaders · Bersin Podcast · Emerj · FoWX</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Friday</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">LinkedIn scan — check thought leaders' latest posts and shares</div>
+            <div class="rhythm-src">Bersin · Enderes · Garr · Laurano · Ulrich</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Monthly — 1 to 2 hours</div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Week 1</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Review Workday and ServiceNow platform release notes for AI agent updates</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Week 2</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Read one Gartner or Forrester report on HR platforms or AI readiness</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Week 3</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Attend a virtual webinar from a platform vendor or analyst firm</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Week 4</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Share one insight or article with your Marvell team to build visibility</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Quarterly</div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Q2 2026</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Irresistible 2026 — June 8–10, USC Marshall, Los Angeles</div>
+            <div class="rhythm-src">Josh Bersin Company · Global HR Leadership Conference</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Q3 2026</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">HR Technology Conference &amp; Expo — October, Las Vegas</div>
+            <div class="rhythm-src">Largest HR tech expo in the US</div>
+          </div>
+        </div>
+        <div class="rhythm-row">
+          <div class="rhythm-when">Ongoing</div>
+          <div class="rhythm-body">
+            <div class="rhythm-what">Use Galileo (Josh Bersin AI) for on-demand research and scenario planning</div>
+            <div class="rhythm-src">getgalileo.ai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: TOPICS -->
+  <div id="topics" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Topic coverage tracker</div>
+
+        <div class="topic-row">
+          <div class="topic-head">
+            <span class="topic-name">Agentic AI in HR</span>
+            <span class="topic-tag tag-core">Core</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%; background:#0066cc;"></div></div>
+          <div class="topic-src">Best sources: Bersin, The Neuron, Workday Blog, ServiceNow</div>
+        </div>
+
+        <div class="topic-row">
+          <div class="topic-head">
+            <span class="topic-name">HR Platforms &amp; HCM</span>
+            <span class="topic-tag tag-platform">Platform</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:75%; background:#00897b;"></div></div>
+          <div class="topic-src">Best sources: Gartner, Aptitude Research, vendor blogs</div>
+        </div>
+
+        <div class="topic-row">
+          <div class="topic-head">
+            <span class="topic-name">Future of Work / Work 2030</span>
+            <span class="topic-tag tag-macro">Macro</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:82%; background:#c97a00;"></div></div>
+          <div class="topic-src">Best sources: Bersin keynote, Transform conference, HR Vision</div>
+        </div>
+
+        <div class="topic-row">
+          <div class="topic-head">
+            <span class="topic-name">People Analytics &amp; Data</span>
+            <span class="topic-tag tag-research">Research</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:60%; background:#2e7d32;"></div></div>
+          <div class="topic-src">Best sources: Stacia Garr, PAWorld, Knoetic</div>
+        </div>
+
+        <div class="topic-row">
+          <div class="topic-head">
+            <span class="topic-name">L&amp;D &amp; Skills Intelligence</span>
+            <span class="topic-tag tag-platform">Platform</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:55%; background:#00897b;"></div></div>
+          <div class="topic-src">Best sources: Bersin, Learning Live, NIIT, Sana (Workday)</div>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <div class="card-title">Quick brief — key questions to explore</div>
+        <a class="brief-link" href="https://joshbersin.com/2026/04/introducing-hr-2030-a-vision-for-agentic-human-resources/" target="_blank">
+          <span class="brief-text">What is Bersin's HR 2030 vision for agentic HR?</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://joshbersin.com/2026/04/the-reinvention-of-workday-from-system-of-record-to-platform-of-agents/" target="_blank">
+          <span class="brief-text">How is Workday reinventing itself as a platform for agents?</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://joshbersin.com/2026/01/the-great-reinvention-of-human-resources-has-begun/" target="_blank">
+          <span class="brief-text">The great reinvention of HR — Bersin's 2026 thesis</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://joshbersin.com/2026/03/gloat-enters-the-crowded-war-for-ai-agents-in-hr/" target="_blank">
+          <span class="brief-text">The 5-layer architecture of agentic AI in HR</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://www.unleash.ai/unleash-america/josh-bersin-were-not-going-to-lose-the-hr-department-because-of-agentic-ai/" target="_blank">
+          <span class="brief-text">Why HR won't disappear — Bersin at UNLEASH America</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://getgalileo.ai" target="_blank">
+          <span class="brief-text">Explore Galileo — Bersin's AI agent for HR research</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://aptituderesearch.com" target="_blank">
+          <span class="brief-text">Aptitude Research — latest HR tech platform analysis</span>
+          <span class="brief-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: EVENTS -->
+  <div id="events" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Upcoming conferences 2026</div>
+
+        <div class="event-row">
+          <div class="event-month" style="background:#e0f2f0; color:#00695c;">NOW</div>
+          <div class="event-info">
+            <div class="event-name">SPARK HR 2026</div>
+            <div class="event-detail">Apr 28–30 · St. Pete Beach, FL · Leadership + Employee Experience</div>
+          </div>
+          <a href="https://www.hci.org/conferences/spark-hr-2026" target="_blank" class="event-btn">Info →</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-month" style="background:#e8f0fb; color:#1565c0;">Jun 3</div>
+          <div class="event-info">
+            <div class="event-name">Transform 2026 — London</div>
+            <div class="event-detail">Jun 3–4 · London, UK · Human + AI Equation</div>
+          </div>
+          <a href="https://www.transformconference.com" target="_blank" class="event-btn">Info →</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-month" style="background:#fdecea; color:#b71c1c; font-weight:600;">Jun 8</div>
+          <div class="event-info">
+            <div class="event-name">Irresistible 2026 ★</div>
+            <div class="event-detail">Jun 8–10 · USC Marshall, LA · Global HR Leadership Conference</div>
+          </div>
+          <a href="https://www.uscmarshallexeced.org/event/Irresistible2026/register" target="_blank" class="event-btn">Register →</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-month" style="background:#fff3e0; color:#e65100;">Oct</div>
+          <div class="event-info">
+            <div class="event-name">HR Tech Conference &amp; Expo</div>
+            <div class="event-detail">Oct 2026 · Las Vegas, NV · Largest HR tech expo in the US</div>
+          </div>
+          <a href="https://www.hrtechconference.com" target="_blank" class="event-btn">Info →</a>
+        </div>
+
+        <div class="event-row">
+          <div class="event-month" style="background:#e8f0fb; color:#1565c0;">Nov</div>
+          <div class="event-info">
+            <div class="event-name">Transform 2026 — London (Fall)</div>
+            <div class="event-detail">Nov 17–18 · London, UK · Future of Work</div>
+          </div>
+          <a href="https://www.transformconference.com" target="_blank" class="event-btn">Info →</a>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <div class="card-title">Virtual &amp; on-demand</div>
+        <a class="brief-link" href="https://joshbersin.com" target="_blank">
+          <span class="brief-text">Josh Bersin Company — on-demand research and webinars</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://getgalileo.ai" target="_blank">
+          <span class="brief-text">Galileo AI — interactive HR research platform</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://www.shrm.org/learning-and-career/learning/webcasts-and-virtual" target="_blank">
+          <span class="brief-text">SHRM — ongoing virtual sessions and certifications</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://lattice.com/library" target="_blank">
+          <span class="brief-text">Lattice — on-demand HR leadership webinars</span>
+          <span class="brief-arrow">→</span>
+        </a>
+        <a class="brief-link" href="https://www.workday.com/en-us/company/events.html" target="_blank">
+          <span class="brief-text">Workday events — product and AI roadmap sessions</span>
+          <span class="brief-arrow">→</span>
+        </a>
+
+        <div style="margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border);">
+          <div class="card-title" style="border:none; padding:0; margin-bottom:0.75rem;">Communities</div>
+          <div class="pill-wrap">
+            <a href="https://www.linkedin.com/groups/HR-Tech-Insiders" target="_blank" class="pill">HR Tech Insiders (LinkedIn)</a>
+            <a href="https://www.cultureamp.com/community" target="_blank" class="pill">People Geek (Culture Amp)</a>
+            <a href="https://academy.josh bersin.com" target="_blank" class="pill">Josh Bersin Academy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: LEADERS -->
+  <div id="leaders" class="section">
+    <div class="grid-3">
+
+      <div class="card">
+        <div class="card-title">Top analysts to follow</div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fdecea; font-size:13px; font-weight:500; color:#b71c1c;">JB</div>
+          <div class="source-info">
+            <div class="source-name">Josh Bersin</div>
+            <div class="source-desc">CEO, Josh Bersin Company — HR, AI, future of work</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f0fb; font-size:13px; font-weight:500; color:#1565c0;">KE</div>
+          <div class="source-info">
+            <div class="source-name">Kathi Enderes</div>
+            <div class="source-desc">Global Industry Analyst, Josh Bersin Company</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f5e9; font-size:13px; font-weight:500; color:#1b5e20;">SG</div>
+          <div class="source-info">
+            <div class="source-name">Stacia Garr</div>
+            <div class="source-desc">Co-founder, RedThread Research — people analytics</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fff3e0; font-size:13px; font-weight:500; color:#e65100;">ML</div>
+          <div class="source-info">
+            <div class="source-name">Madeline Laurano</div>
+            <div class="source-desc">Founder, Aptitude Research — HR tech platforms</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e0f2f0; font-size:13px; font-weight:500; color:#004d40;">DU</div>
+          <div class="source-info">
+            <div class="source-name">Dave Ulrich</div>
+            <div class="source-desc">Rensis Likert Professor — HR leadership strategy</div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <a href="https://www.linkedin.com/in/joshbersin/" target="_blank" class="pill">Follow on LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Platform voices worth tracking</div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f0fb; font-size:13px; font-weight:500; color:#1565c0;">WD</div>
+          <div class="source-info">
+            <div class="source-name">Workday Newsroom</div>
+            <div class="source-desc">AI agent roadmap, product strategy announcements</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#e8f5e9; font-size:13px; font-weight:500; color:#1b5e20;">SN</div>
+          <div class="source-info">
+            <div class="source-name">ServiceNow Executives</div>
+            <div class="source-desc">Enterprise AI, agentic workflows, HR automation</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fff3e0; font-size:13px; font-weight:500; color:#e65100;">MS</div>
+          <div class="source-info">
+            <div class="source-name">Microsoft HR AI Team</div>
+            <div class="source-desc">Copilot for HR, Microsoft Viva updates</div>
+          </div>
+        </div>
+        <div class="source-row">
+          <div class="source-icon" style="background:#fdecea; font-size:13px; font-weight:500; color:#b71c1c;">GL</div>
+          <div class="source-info">
+            <div class="source-name">Galileo by Bersin</div>
+            <div class="source-desc">AI-native research platform — interactive HR intelligence</div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <a href="https://getgalileo.ai" target="_blank" class="pill">Explore Galileo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Key frameworks to know</div>
+        <div class="rhythm-row" style="padding:10px 0;">
+          <div class="rhythm-body">
+            <div class="rhythm-what" style="font-weight:500;">Systemic HR</div>
+            <div class="rhythm-src">HR as integrated operation, not siloed COEs. Bersin's foundational model for 2026.</div>
+          </div>
+        </div>
+        <div class="rhythm-row" style="padding:10px 0;">
+          <div class="rhythm-body">
+            <div class="rhythm-what" style="font-weight:500;">Superagents</div>
+            <div class="rhythm-src">AI systems that stitch together functional agents to manage entire HR processes end-to-end.</div>
+          </div>
+        </div>
+        <div class="rhythm-row" style="padding:10px 0;">
+          <div class="rhythm-body">
+            <div class="rhythm-what" style="font-weight:500;">Superworker</div>
+            <div class="rhythm-src">Human + AI collaboration model where individuals are augmented to perform at dramatically higher levels.</div>
+          </div>
+        </div>
+        <div class="rhythm-row" style="padding:10px 0;">
+          <div class="rhythm-body">
+            <div class="rhythm-what" style="font-weight:500;">5-Layer Agent Architecture</div>
+            <div class="rhythm-src">Systems of record → workflow → agents → superagents → platforms (Galileo, Copilot Studio, Joule).</div>
+          </div>
+        </div>
+        <div class="rhythm-row" style="padding:10px 0; border-bottom:none;">
+          <div class="rhythm-body">
+            <div class="rhythm-what" style="font-weight:500;">HR 2030 Vision</div>
+            <div class="rhythm-src">Bersin's forward model: agents with full employee data context, connected to all business systems.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">Alex Rivera — Agent for Change &nbsp;·&nbsp; HR Tech Intelligence Hub &nbsp;·&nbsp; Updated April 2026</div>
+    <div class="footer-right">Built for sharing &nbsp;·&nbsp; Sources: Josh Bersin Company, UNLEASH, Aptitude Research, Lattice, Nestor</div>
+  </div>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
