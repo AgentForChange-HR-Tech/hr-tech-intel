@@ -342,45 +342,6 @@
   }
   .event-btn:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
-  /* ── LIVE FEED ── */
-  .live-feed-panel {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 1.25rem 1.5rem;
-    box-shadow: var(--shadow); margin-top: 16px;
-  }
-
-  .feed-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
-  .feed-title { font-size: 11px; font-weight: 500; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.07em; }
-
-  .live-dot { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--teal); font-weight: 500; }
-  .live-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
-
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-  .feed-tabs { display: flex; gap: 4px; margin-bottom: 1rem; flex-wrap: wrap; }
-  .feed-tab {
-    font-size: 11px; padding: 4px 10px; border-radius: 12px;
-    border: 1px solid var(--border); background: transparent;
-    color: var(--ink-soft); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.12s;
-  }
-  .feed-tab.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
-  .feed-tab:hover:not(.active) { background: var(--surface-alt); }
-
-  .feed-list { min-height: 200px; }
-
-  .feed-item {
-    display: flex; flex-direction: column; gap: 3px; padding: 10px 0;
-    border-bottom: 1px solid var(--border); text-decoration: none; cursor: pointer; transition: all 0.12s;
-  }
-  .feed-item:last-child { border-bottom: none; }
-  .feed-item:hover .feed-item-title { color: var(--accent); }
-  .feed-item-source { font-size: 10px; font-weight: 500; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
-  .feed-item-title { font-size: 13px; color: var(--ink); line-height: 1.4; transition: color 0.12s; }
-  .feed-item-date { font-size: 11px; color: var(--ink-faint); }
-  .feed-loading { display: flex; align-items: center; justify-content: center; height: 120px; font-size: 13px; color: var(--ink-faint); }
-  .feed-error { font-size: 12px; color: var(--ink-faint); padding: 12px 0; text-align: center; }
-  .feed-footer-note { margin-top: 10px; font-size: 11px; color: var(--ink-faint); }
-
   /* ── SUBSCRIBE SECTION ── */
   .subscribe-strip {
     background: var(--card-bg); border: 1px solid var(--border);
@@ -801,22 +762,6 @@
       </div>
     </div>
 
-    <!-- LIVE RSS PANEL -->
-    <div class="live-feed-panel" id="rss-panel">
-      <div class="feed-header">
-        <span class="feed-title">Live Headlines</span>
-        <span class="live-dot">Live</span>
-      </div>
-      <div class="feed-tabs">
-        <button class="feed-tab active" onclick="loadFeed('bersin', this)">Josh Bersin</button>
-        <button class="feed-tab" onclick="loadFeed('shrm', this)">SHRM</button>
-        <button class="feed-tab" onclick="loadFeed('workday', this)">Workday</button>
-        <button class="feed-tab" onclick="loadFeed('servicenow', this)">ServiceNow</button>
-        <button class="feed-tab" onclick="loadFeed('emerj', this)">Emerj AI</button>
-      </div>
-      <div class="feed-list" id="feed-list"><div class="feed-loading">Loading latest headlines…</div></div>
-      <div class="feed-footer-note">Updates every time you open the dashboard · Click any headline to read the full article</div>
-    </div>
   </div>
 
   <!-- TAB: MARVELL CONTEXT -->
@@ -1193,23 +1138,6 @@
         </div>
       </div>
     </div>
-
-    <!-- LEADERS LIVE FEED -->
-    <div class="live-feed-panel" id="leaders-rss-panel" style="margin-top:16px; display:none;">
-      <div class="feed-header">
-        <span class="feed-title">Live Headlines — Thought Leaders &amp; Platforms</span>
-        <span class="live-dot">Live</span>
-      </div>
-      <div class="feed-tabs">
-        <button class="feed-tab active" onclick="loadLeaderFeed('bersin_l', this)">Josh Bersin</button>
-        <button class="feed-tab" onclick="loadLeaderFeed('redthread', this)">RedThread (Garr)</button>
-        <button class="feed-tab" onclick="loadLeaderFeed('aptitude', this)">Aptitude (Laurano)</button>
-        <button class="feed-tab" onclick="loadLeaderFeed('workday_l', this)">Workday Newsroom</button>
-        <button class="feed-tab" onclick="loadLeaderFeed('servicenow_l', this)">ServiceNow</button>
-      </div>
-      <div class="feed-list" id="leaders-feed-list"><div class="feed-loading">Loading headlines…</div></div>
-      <div class="feed-footer-note">Updates every time you open the dashboard · Click any headline to read the full article</div>
-    </div>
   </div>
 
   <!-- TAB: ABOUT -->
@@ -1374,13 +1302,6 @@
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
-    const rssPanel = document.getElementById('rss-panel');
-    const leadersPanel = document.getElementById('leaders-rss-panel');
-    if (rssPanel) rssPanel.style.display = id === 'feeds' ? 'block' : 'none';
-    if (leadersPanel) {
-      leadersPanel.style.display = id === 'leaders' ? 'block' : 'none';
-      if (id === 'leaders') fetchFeed('bersin_l', 'leaders-feed-list');
-    }
   }
 
   /* ── SEARCH ── */
@@ -1446,63 +1367,6 @@
     document.getElementById('search-results').classList.remove('visible');
   }
 
-  /* ── RSS FEEDS ── */
-  const RSS_FEEDS = {
-    bersin:       { url: 'https://joshbersin.com/feed/', label: 'Josh Bersin' },
-    shrm:         { url: 'https://www.shrm.org/rss/pages/rss.aspx', label: 'SHRM' },
-    workday:      { url: 'https://blog.workday.com/en-us/feeds/posts/default.rss', label: 'Workday Blog' },
-    servicenow:   { url: 'https://www.servicenow.com/blogs.rss', label: 'ServiceNow' },
-    emerj:        { url: 'https://emerj.com/feed/', label: 'Emerj AI' },
-    bersin_l:     { url: 'https://joshbersin.com/feed/', label: 'Josh Bersin' },
-    redthread:    { url: 'https://redthreadresearch.com/feed/', label: 'RedThread Research' },
-    aptitude:     { url: 'https://aptituderesearch.com/feed/', label: 'Aptitude Research' },
-    workday_l:    { url: 'https://newsroom.workday.com/rss/news_releases.rss', label: 'Workday Newsroom' },
-    servicenow_l: { url: 'https://www.servicenow.com/blogs.rss', label: 'ServiceNow Blog' }
-  };
-
-  function formatDate(d) {
-    if (!d) return '';
-    try { return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-    catch(e) { return ''; }
-  }
-
-  async function fetchFeed(key, listId) {
-    const list = document.getElementById(listId);
-    if (!list) return;
-    list.innerHTML = '<div class="feed-loading">Loading headlines…</div>';
-    const feed = RSS_FEEDS[key];
-    const proxy = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}&count=8`;
-    try {
-      const res = await fetch(proxy);
-      const data = await res.json();
-      if (data.status !== 'ok' || !data.items?.length) throw new Error('empty');
-      list.innerHTML = data.items.map(item => `
-        <a class="feed-item" href="${item.link}" target="_blank" rel="noopener noreferrer">
-          <span class="feed-item-source">${feed.label}</span>
-          <span class="feed-item-title">${item.title}</span>
-          <span class="feed-item-date">${formatDate(item.pubDate)}</span>
-        </a>`).join('');
-    } catch(e) {
-      const siteUrl = feed.url.replace('/feed/','').replace('/feed','').replace('.rss','');
-      list.innerHTML = `<div class="feed-error">Live feed unavailable — <a href="${siteUrl}" target="_blank" style="color:var(--accent);">visit ${feed.label} directly →</a></div>`;
-    }
-  }
-
-  function loadFeed(key, btn) {
-    document.querySelectorAll('#rss-panel .feed-tab').forEach(t => t.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    fetchFeed(key, 'feed-list');
-  }
-
-  function loadLeaderFeed(key, btn) {
-    document.querySelectorAll('#leaders-rss-panel .feed-tab').forEach(t => t.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    fetchFeed(key, 'leaders-feed-list');
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    fetchFeed('bersin', 'feed-list');
-  });
 </script>
 </body>
 </html>
